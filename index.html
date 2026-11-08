@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FillyVerse 10 - AI Cinema Universe & Future Box Office</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Cinzel"', 'serif'],
+                    },
+                    colors: {
+                        filly: {
+                            bg: '#05040a',
+                            card: '#0d0a1a',
+                            border: '#23183d',
+                            primary: '#8b5cf6',
+                            accent: '#ec4899',
+                            gold: '#fbbf24',
+                            cyan: '#06b6d4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #05040a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(13, 10, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(251, 191, 36, 0.55);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #c084fc 0%, #ec4899 50%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05040a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #23183d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col relative pb-12">
+
+    <!-- Glowing Background Atmosphere Orbs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[130px] pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-pink-900/20 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <!-- Header & Brand Bar -->
+    <header class="sticky top-0 z-40 bg-[#05040a]/80 backdrop-blur-md border-b border-purple-900/30 px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-600 to-amber-500 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                <i data-lucide="clapperboard" class="w-6 h-6 text-white"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight font-serif gradient-text">FillyVerse 10</h1>
+                <p class="text-[10px] text-purple-300 font-semibold uppercase tracking-widest">AI Film Universe & Future Box Office</p>
+            </div>
+        </div>
+
+        <!-- Menu 5 Navigation Systems -->
+        <nav class="flex flex-wrap items-center justify-center gap-1.5 bg-slate-900/80 p-1.5 rounded-2xl border border-purple-500/20 text-xs font-semibold">
+            <button onclick="switchMenu('all')" id="menu-all" class="menu-btn px-3.5 py-2 rounded-xl bg-purple-600 text-white transition shadow-md flex items-center gap-1.5">
+                <i data-lucide="film" class="w-4 h-4"></i> All 10 Movies
+            </button>
+            <button onclick="switchMenu('past')" id="menu-past" class="menu-btn px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                <i data-lucide="history" class="w-4 h-4 text-purple-400"></i> Past Releases
+            </button>
+            <button onclick="switchMenu('present')" id="menu-present" class="menu-btn px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                <i data-lucide="play-circle" class="w-4 h-4 text-pink-400"></i> Present In-Theaters
+            </button>
+            <button onclick="switchMenu('future')" id="menu-future" class="menu-btn px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> Future Slate
+            </button>
+            <button onclick="switchMenu('analytics')" id="menu-analytics" class="menu-btn px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                <i data-lucide="bar-chart-3" class="w-4 h-4 text-cyan-400"></i> Box Office Stats
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 relative z-10">
+
+        <!-- Banner Announcement -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl mb-8 relative overflow-hidden border border-purple-500/30">
+            <div class="absolute right-0 top-0 w-80 h-80 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <span class="px-3.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider">FillyVerse 10 AI Catalog</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-serif mt-2 mb-2 gradient-text">Next-Gen Cinema Ecosystem</h2>
+                    <p class="text-sm text-slate-300 max-w-2xl leading-relaxed">
+                        Explore 10 AI-conceived blockbusters across Past (Classics), Present (Now Playing), and Future (2027–2028 Release Slate). Review earnings, audience ratings, and complete narrative breakdowns.
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 bg-slate-950/60 p-4 rounded-2xl border border-purple-500/20">
+                    <div class="text-center">
+                        <span class="block text-2xl font-bold text-amber-400 font-serif">$3.82B</span>
+                        <span class="text-[10px] text-purple-300 uppercase">Total Box Office</span>
+                    </div>
+                    <div class="w-px h-8 bg-purple-900/40"></div>
+                    <div class="text-center">
+                        <span class="block text-2xl font-bold text-pink-400 font-serif">10 / 10</span>
+                        <span class="text-[10px] text-purple-300 uppercase">AI Features</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOVIE CARDS GRID VIEW -->
+        <section id="moviesSection" class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold font-serif text-white flex items-center gap-2" id="sectionTitle">
+                    <i data-lucide="film" class="w-5 h-5 text-purple-400"></i> All 10 AI Movies
+                </h3>
+                <span class="text-xs text-slate-400 font-semibold" id="movieCountBadge">Showing 10 Movies</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="movieGrid">
+                <!-- Cards Injected via JS -->
+            </div>
+        </section>
+
+        <!-- MENU 5: BOX OFFICE ANALYTICS VIEW -->
+        <section id="analyticsSection" class="hidden space-y-8">
+            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-purple-500/30 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Financial & Critical Overview</span>
+                    <h3 class="text-2xl font-bold font-serif text-white mt-1">FillyVerse 10 Box Office Analytics</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 rounded-2xl bg-slate-900/60 border border-purple-500/20">
+                        <span class="text-xs text-purple-300 uppercase font-semibold">Highest Grossing AI Film</span>
+                        <h4 class="text-xl font-bold font-serif text-amber-400 mt-1">Neon Singularity (2025)</h4>
+                        <p class="text-sm text-slate-300 font-bold mt-1">$940,000,000 Worldwide</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-900/60 border border-purple-500/20">
+                        <span class="text-xs text-purple-300 uppercase font-semibold">Top Rated Critic Score</span>
+                        <h4 class="text-xl font-bold font-serif text-pink-400 mt-1">Echoes of Solitude (2024)</h4>
+                        <p class="text-sm text-slate-300 font-bold mt-1">9.6 / 10 Critic Average</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-900/60 border border-purple-500/20">
+                        <span class="text-xs text-purple-300 uppercase font-semibold">Most Anticipated Future Film</span>
+                        <h4 class="text-xl font-bold font-serif text-cyan-400 mt-1">Chronos Engine (2028)</h4>
+                        <p class="text-sm text-slate-300 font-bold mt-1">Release: Nov 15, 2028</p>
+                    </div>
+                </div>
+
+                <!-- Box Office Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-slate-900 text-purple-300 font-serif uppercase text-[10px]">
+                            <tr>
+                                <th class="p-3">Rank</th>
+                                <th class="p-3">Movie Title</th>
+                                <th class="p-3">Timeline Era</th>
+                                <th class="p-3">Release Date</th>
+                                <th class="p-3">Global Box Office / Projected</th>
+                                <th class="p-3">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-purple-900/20" id="analyticsTableBody">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MOVIE DETAIL & REVIEW MODAL -->
+    <div id="movieModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card bg-[#0b0816] border border-purple-500/30 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/60 hover:bg-purple-600/80 text-white transition backdrop-blur-sm">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Application Scripting -->
+    <script>
+        // 10 AI Movies Database across Past, Present, and Future
+        const moviesDatabase = [
+            // PAST MOVIES (1 to 4)
+            {
+                id: 1,
+                title: "Echoes of Solitude",
+                timeline: "past",
+                eraTag: "Past Release (Classic)",
+                releaseDate: "14 October 2024",
+                boxOffice: "$620,000,000",
+                budget: "$90,000,000",
+                rating: 9.6,
+                poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
+                director: "AI Director Unit 01",
+                genre: "Sci-Fi Drama / Solitude",
+                logline: "A lone lighthouse keeper on a forgotten satellite station discovers an ancient audio frequency broadcasting from the center of a black hole.",
+                review: "A masterpiece of atmospheric storytelling. The visual fidelity and synthesized acoustic score evoke a deep sense of human reflection."
+            },
+            {
+                id: 2,
+                title: "Neon Singularity",
+                timeline: "past",
+                eraTag: "Past Release (Blockbuster)",
+                releaseDate: "05 May 2025",
+                boxOffice: "$940,000,000",
+                budget: "$140,000,000",
+                rating: 9.2,
+                poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+                director: "Kaelen Voss (AI Persona)",
+                genre: "Cyberpunk Action",
+                logline: "In rain-slicked Neo-Tokyo 2099, a rogue neural hacker races against time to stop an autonomous superintelligence from erasing human memory.",
+                review: "Visually explosive with groundbreaking AI-driven VFX action sequences. Redefines cyberpunk spectacle for modern cinema."
+            },
+            {
+                id: 3,
+                title: "The Pulsating Cosmos",
+                timeline: "past",
+                eraTag: "Past Release (Documentary)",
+                releaseDate: "18 September 2025",
+                boxOffice: "$310,000,000",
+                budget: "$40,000,000",
+                rating: 9.5,
+                poster: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+                director: "Amimul Ahsan Synthesizer",
+                genre: "Cosmic Documentary",
+                logline: "An extraordinary journey through quantum interconnectivity, universal oscillations, and the metaphysical rhythm of galaxies.",
+                review: "Deeply philosophical and scientifically captivating. Bridges modern quantum physics with ancient cosmic wisdom seamlessly."
+            },
+            {
+                id: 4,
+                title: "Jabordey: The Unseen Mind",
+                timeline: "past",
+                eraTag: "Past Release (Psychological)",
+                releaseDate: "12 February 2026",
+                boxOffice: "$450,000,000",
+                budget: "$55,000,000",
+                rating: 9.4,
+                poster: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
+                director: "Jabordey AI Collective",
+                genre: "Psychological Thriller",
+                logline: "An eccentric criminal psychologist who is also a writer takes on a case study that forces him to confront his own inner solitude.",
+                review: "A haunting character study filled with intricate psychological twists and profound dialogue."
+            },
+
+            // PRESENT MOVIES (5 to 7 - Currently In Theaters 2026)
+            {
+                id: 5,
+                title: "Green World: Horizon",
+                timeline: "present",
+                eraTag: "Present (In Theaters)",
+                releaseDate: "10 September 2026",
+                boxOffice: "$510,000,000 (Ongoing)",
+                budget: "$85,000,000",
+                rating: 9.1,
+                poster: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80",
+                director: "Eco-Tech Cinema Studio",
+                genre: "Eco-SciFi / Adventure",
+                logline: "After paper and industrial pollution cease, a new generation of explorers builds a self-sustaining biosphere in the high mountain wilderness.",
+                review: "A breathtaking tribute to nature and eco-friendly technology. Inspiring, colorful, and visually serene."
+            },
+            {
+                id: 6,
+                title: "Shadows of Bangabandhu Hall",
+                timeline: "present",
+                eraTag: "Present (In Theaters)",
+                releaseDate: "01 October 2026",
+                boxOffice: "$380,000,000 (Ongoing)",
+                budget: "$45,000,000",
+                rating: 8.9,
+                poster: "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=600&q=80",
+                director: "University Storyline AI",
+                genre: "Mystery / Campus Noir",
+                logline: "Inside Room 113 of an iconic university dormitory, an ambitious student discovers secret manuscripts detailing forgotten historical events.",
+                review: "Rich in atmosphere and cultural nuance. Captures the warmth, nostalgia, and secrets of university life."
+            },
+            {
+                id: 7,
+                title: "The 34th Sovereign",
+                timeline: "present",
+                eraTag: "Present (In Theaters)",
+                releaseDate: "28 October 2026",
+                boxOffice: "$290,000,000 (Ongoing)",
+                budget: "$70,000,000",
+                rating: 9.0,
+                poster: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",
+                director: "Royal Filly AI",
+                genre: "Political Epic / Fantasy",
+                logline: "A young leader ascends to the sovereign throne of a floating sky city, forced to navigate complex diplomatic rivalries and ancient magic.",
+                review: "Opulent visuals paired with sharp political intrigue. A high-stakes fantasy epic for modern audiences."
+            },
+
+            // FUTURE MOVIES (8 to 10 - Release Slate 2027 to 2028)
+            {
+                id: 8,
+                title: "Solaris V: The Last Colony",
+                timeline: "future",
+                eraTag: "Future Release (Summer 2027)",
+                releaseDate: "15 June 2027",
+                boxOffice: "$850,000,000 (Projected)",
+                budget: "$160,000,000",
+                rating: 9.7,
+                poster: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600&q=80",
+                director: "Interstellar AI Core",
+                genre: "Space Survival Epic",
+                logline: "Humanity's first extra-solar colony faces a magnetic solar flare, forcing two rival commanders to engineer a radical planetary shield.",
+                review: "Hype Meter: 99%. Early test screenings praise the hyper-realistic zero-gravity sequences and intense emotional core."
+            },
+            {
+                id: 9,
+                title: "Lotus & Lightning",
+                timeline: "future",
+                eraTag: "Future Release (Autumn 2027)",
+                releaseDate: "24 November 2027",
+                boxOffice: "$580,000,000 (Projected)",
+                budget: "$75,000,000",
+                rating: 9.3,
+                poster: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80",
+                director: "Eastern Mythos AI",
+                genre: "Mythological Fantasy / Martial Arts",
+                logline: "A martial artist gifted with elemental lightning embarks on a quest across sacred mountain peaks to restore cosmic balance.",
+                review: "Hype Meter: 95%. Anticipated to deliver breathtaking choreography and stunning spiritual visuals."
+            },
+            {
+                id: 10,
+                title: "Chronos Engine: Eternity",
+                timeline: "future",
+                eraTag: "Future Release (Winter 2028)",
+                releaseDate: "15 November 2028",
+                boxOffice: "$1,100,000,000 (Projected)",
+                budget: "$200,000,000",
+                rating: 9.8,
+                poster: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80",
+                director: "Quantum Cinema Engine",
+                genre: "Time-Travel / Sci-Fi",
+                logline: "When time itself begins to fracture into parallel streams, a team of temporal physicists attempts to reset the primordial Chronos Engine.",
+                review: "Hype Meter: 100%. Set to be the most ambitious AI movie in cinematic history, featuring non-linear narrative branches."
+            }
+        ];
+
+        // Active State
+        let currentMenu = 'all';
+
+        // DOM Handles
+        const movieGrid = document.getElementById('movieGrid');
+        const moviesSection = document.getElementById('moviesSection');
+        const analyticsSection = document.getElementById('analyticsSection');
+        const sectionTitle = document.getElementById('sectionTitle');
+        const movieCountBadge = document.getElementById('movieCountBadge');
+
+        // Render Movie Grid Cards
+        function renderCards() {
+            movieGrid.innerHTML = '';
+
+            const filtered = moviesDatabase.filter(m => {
+                if (currentMenu === 'all') return true;
+                return m.timeline === currentMenu;
+            });
+
+            movieCountBadge.innerText = `Showing ${filtered.length} Movies`;
+
+            filtered.forEach(movie => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-3xl overflow-hidden group cursor-pointer transition-all duration-300 hover:-translate-y-2 flex flex-col relative';
+
+                let badgeColor = 'bg-purple-500/20 text-purple-300 border-purple-500/40';
+                if (movie.timeline === 'present') badgeColor = 'bg-pink-500/20 text-pink-300 border-pink-500/40';
+                if (movie.timeline === 'future') badgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+
+                card.innerHTML = `
+                    <div class="relative h-80 overflow-hidden bg-slate-950" onclick="openModal(${movie.id})">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0d0a1a] via-transparent to-black/30 z-10"></div>
+                        
+                        <div class="absolute top-3 left-3 z-20 px-3 py-1 rounded-full bg-black/60 border ${badgeColor} backdrop-blur-md">
+                            <span class="text-[10px] font-bold uppercase tracking-wider">${movie.eraTag}</span>
+                        </div>
+
+                        <div class="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full bg-black/60 border border-amber-500/50 backdrop-blur-md flex items-center gap-1">
+                            <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-amber-400"></i>
+                            <span class="text-xs font-bold text-amber-300">${movie.rating}</span>
+                        </div>
+
+                        <img 
+                            src="${movie.poster}" 
+                            alt="${movie.title}" 
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-out"
+                        />
+                    </div>
+
+                    <div class="p-5 flex-1 flex flex-col justify-between relative z-20" onclick="openModal(${movie.id})">
+                        <div>
+                            <span class="text-[10px] text-purple-300 uppercase font-semibold tracking-widest block mb-1">${movie.genre}</span>
+                            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition font-serif">${movie.title}</h4>
+                            <p class="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">${movie.logline}</p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-purple-900/30 space-y-2 text-xs">
+                            <div class="flex items-center justify-between text-slate-400">
+                                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-purple-400"></i> Release:</span>
+                                <span class="font-bold text-slate-200">${movie.releaseDate}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-slate-400">
+                                <span class="flex items-center gap-1"><i data-lucide="dollar-sign" class="w-3.5 h-3.5 text-amber-400"></i> Box Office:</span>
+                                <span class="font-bold text-amber-400">${movie.boxOffice}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                movieGrid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Render Analytics View Table
+        function renderAnalyticsTable() {
+            const tbody = document.getElementById('analyticsTableBody');
+            tbody.innerHTML = '';
+
+            moviesDatabase.forEach((m, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-purple-900/10 transition';
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-purple-400">#0${idx + 1}</td>
+                    <td class="p-3 font-bold text-white font-serif">${m.title}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-[10px] uppercase">${m.timeline}</span></td>
+                    <td class="p-3 text-slate-300">${m.releaseDate}</td>
+                    <td class="p-3 font-bold text-amber-400">${m.boxOffice}</td>
+                    <td class="p-3 font-bold text-pink-400 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 fill-pink-400"></i> ${m.rating}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // Switch Menu System (5 Menus)
+        function switchMenu(menuKey) {
+            currentMenu = menuKey;
+
+            // Highlight Active Menu Button
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.className = "menu-btn px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-1.5";
+            });
+            const activeBtn = document.getElementById(`menu-${menuKey}`);
+            if (activeBtn) {
+                activeBtn.className = "menu-btn px-3.5 py-2 rounded-xl bg-purple-600 text-white transition shadow-md flex items-center gap-1.5";
+            }
+
+            if (menuKey === 'analytics') {
+                moviesSection.classList.add('hidden');
+                analyticsSection.classList.remove('hidden');
+                renderAnalyticsTable();
+            } else {
+                analyticsSection.classList.add('hidden');
+                moviesSection.classList.remove('hidden');
+
+                if (menuKey === 'all') sectionTitle.innerHTML = `<i data-lucide="film" class="w-5 h-5 text-purple-400"></i> All 10 AI Movies`;
+                if (menuKey === 'past') sectionTitle.innerHTML = `<i data-lucide="history" class="w-5 h-5 text-purple-400"></i> Past Classics & Blockbusters`;
+                if (menuKey === 'present') sectionTitle.innerHTML = `<i data-lucide="play-circle" class="w-5 h-5 text-pink-400"></i> Present In-Theaters (2026)`;
+                if (menuKey === 'future') sectionTitle.innerHTML = `<i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i> Future Slate (2027–2028)`;
+
+                renderCards();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Open Movie Detail Modal Drawer
+        function openModal(id) {
+            const movie = moviesDatabase.find(m => m.id === id);
+            if (!movie) return;
+
+            const modal = document.getElementById('movieModal');
+            const modalBody = document.getElementById('modalBody');
+
+            modalBody.innerHTML = `
+                <div class="relative h-72 sm:h-96 w-full overflow-hidden rounded-t-3xl bg-slate-950">
+                    <img src="${movie.poster}" class="w-full h-full object-cover filter blur-sm scale-105 opacity-30">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b0816] via-[#0b0816]/60 to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-end sm:items-center gap-6">
+                        <img src="${movie.poster}" class="w-32 h-44 rounded-2xl object-cover border-2 border-purple-400 shadow-2xl flex-shrink-0">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold font-serif">
+                                    ${movie.eraTag}
+                                </span>
+                                <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center gap-1">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-300"></i> ${movie.rating} / 10
+                                </span>
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-serif">${movie.title}</h2>
+                            <p class="text-xs sm:text-sm text-purple-300 font-semibold mt-1">${movie.genre} • Directed by ${movie.director}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-8">
+                    <!-- Key Financials -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-purple-900/20 border border-purple-500/20">
+                            <span class="text-xs uppercase font-bold text-purple-400 tracking-wider block mb-1">Release Date</span>
+                            <p class="text-sm font-semibold text-white">${movie.releaseDate}</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-amber-900/20 border border-amber-500/20">
+                            <span class="text-xs uppercase font-bold text-amber-400 tracking-wider block mb-1">Worldwide Earnings</span>
+                            <p class="text-sm font-semibold text-white">${movie.boxOffice}</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-pink-900/20 border border-pink-500/20">
+                            <span class="text-xs uppercase font-bold text-pink-400 tracking-wider block mb-1">Production Budget</span>
+                            <p class="text-sm font-semibold text-white">${movie.budget}</p>
+                        </div>
+                    </div>
+
+                    <!-- Plot Summary -->
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-purple-300 font-serif flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-5 h-5"></i> Narrative Synopsis
+                        </h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">${movie.logline}</p>
+                    </div>
+
+                    <!-- Critic Review & Analysis -->
+                    <div class="p-5 rounded-2xl bg-slate-900/80 border-l-4 border-amber-400 space-y-2">
+                        <span class="text-xs uppercase font-bold text-amber-400 tracking-wider block">Official AI Cinema Review</span>
+                        <p class="text-sm italic text-slate-200 leading-relaxed">"${movie.review}"</p>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.getElementById('modalContent').classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('movieModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('modalContent').classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('movieModal').addEventListener('click', (e) => {
+            if (e.target.id === 'movieModal') closeModal();
+        });
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+        });
+    </script>
+</body>
+</html>
